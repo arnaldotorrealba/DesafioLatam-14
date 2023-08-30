@@ -211,15 +211,23 @@ const sellContainer = document.querySelector("#venta .row");
 const rentContainer = document.querySelector("#alquiler .row");
 
 // Renderizado
-if (location.pathname === "/index.html") {
-    rentContainer.innerHTML = getCardsTemplate(propiedades_alquiler, 3);
-    sellContainer.innerHTML = getCardsTemplate(propiedades_venta, 3);
-}
+const currentPage = location.pathname;
 
-if (location.pathname === "/propiedades_alquiler.html") {
-    rentContainer.innerHTML = getCardsTemplate(propiedades_alquiler);
-}
+switch (currentPage) {
+    case "/index.html":
+        rentContainer.innerHTML = getCardsTemplate(propiedades_alquiler, 3);
+        sellContainer.innerHTML = getCardsTemplate(propiedades_venta, 3);
+        break;
 
-if (location.pathname === "/propiedades_venta.html") {
-    sellContainer.innerHTML = getCardsTemplate(propiedades_venta);
+    case "/propiedades_alquiler.html":
+        rentContainer.innerHTML = getCardsTemplate(propiedades_alquiler);
+        break;
+
+    case "/propiedades_venta.html":
+        sellContainer.innerHTML = getCardsTemplate(propiedades_venta);
+        break;
+
+    default:
+        console.error("Página no reconocida:", currentPage);
+        break;
 }
